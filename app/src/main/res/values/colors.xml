@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- #ff8a80 Red A100       RGB = 255, 138, 128 -->    
+    <color name="app_color">#ff8a80</color>
+    <color name="bg_blue">#3152F9</color>
+</resources>
