@@ -1,7 +1,7 @@
 ﻿# JDXAndroidRelationshipsExample_K
-### A Simple Kotlin Project Demonstrating Persistence of Inter-Related Objects Using JDXA ORM for Android
+### A Simple Android Project Demonstrating Persistence of Inter-Related Kotlin Objects Using JDXA ORM
 
-This project shows a simple Android app, written in the Kotlin language, that uses JDXA ORM to exchange data of the inter-related objects with an on-device SQLite relational database. The object model used by this app has one-to-one and one-to-many relationships. A company has many departments and many foreign locations. An employee has an address and works in a department. 
+This project shows a simple Android app, written in the Kotlin language, that uses JDXA ORM to exchange data of the inter-related Kotlin objects with an on-device SQLite relational database. The object model used by this app has one-to-one and one-to-many relationships. A company has many departments and many foreign locations. An employee has an address and works in a department. 
 
 ![JDXA_Kotlin Relationships Picture](https://softwaretree.com/v1/images/one-to-many-blended-img2_K.jpg)
 
