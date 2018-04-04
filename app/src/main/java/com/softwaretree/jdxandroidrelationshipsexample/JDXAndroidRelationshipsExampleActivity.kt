@@ -134,13 +134,14 @@ class JDXAndroidRelationshipsExampleActivity : Activity() {
             var queryResults = jdxHandle.query(companyClassName, "companyId='$companyId'", JDXS.ALL,
                     JDXS.FLAG_SHALLOW, null)
             JXUtilities.printQueryResults(queryResults)
+            val company = queryResults!!.get(0) as SimpleCompany
 
             // ***************************************************************
             // Retrieve (lazy fetch) foreignLocations of the above company that was retrieved
             // in a shallow way. There should be two foreign locations associated to this company
             // ****************************************************************
             JXUtilities.log("\n-- Accessing (lazy fetch) the foreignLocations objects of the C1 company --\n")
-            queryResults = jdxHandle.access(queryResults.get(0), "foreignLocations", JDXS.ALL,
+            queryResults = jdxHandle.access(company, "foreignLocations", JDXS.ALL,
                     0, null)
             JXUtilities.printQueryResults(queryResults)
 
@@ -164,16 +165,15 @@ class JDXAndroidRelationshipsExampleActivity : Activity() {
             // ****************************************************************
             JXUtilities.log("\n-- getObjectById for empId=E1 --\n")
             var oid = ObjectId.createObjectId(employeeClassName + ";empId=E1")
-            JXUtilities.printObject(jdxHandle.getObjectById(oid, true, JDXS.FLAG_SHALLOW, null),
-                    0, null)
+            var emp = jdxHandle.getObjectById(oid, true, JDXS.FLAG_SHALLOW, null) as SimpleEmp
+            JXUtilities.printObject(emp, 0, null)
 
             // ****************************************************************
             // Retrieve (lazy fetch) the address object of the E1 employee that was retrieved
             // with a shallow query
             // ****************************************************************
             JXUtilities.log("\n-- Accessing (lazy fetch) address object for employee E1 --\n")
-            queryResults = jdxHandle.access(jdxHandle.getObjectById(oid, true, JDXS.FLAG_SHALLOW,
-                    null), "address", 1, 0, null)
+            queryResults = jdxHandle.access(emp, "address", 1, 0, null)
             JXUtilities.printQueryResults(queryResults)
 
             // ****************************************************************
@@ -181,7 +181,7 @@ class JDXAndroidRelationshipsExampleActivity : Activity() {
             // ****************************************************************
             JXUtilities.log("\n-- getObjectById for empId=E2 --\n")
             oid = ObjectId.createObjectId(employeeClassName + ";empId=E2")
-            var emp = jdxHandle.getObjectById(oid, true, JDXS.FLAG_DEEP, null) as SimpleEmp
+            emp = jdxHandle.getObjectById(oid, true, JDXS.FLAG_DEEP, null) as SimpleEmp
             JXUtilities.printObject(emp, 0, null)
 
             // ****************************************************************
@@ -189,8 +189,7 @@ class JDXAndroidRelationshipsExampleActivity : Activity() {
             // ****************************************************************
             JXUtilities.log("\n-- Update SimpleEmp(E2) title and retrieve it again --\n")
             emp.title = "New Title"
-            jdxHandle.update(jdxHandle.getObjectById(oid, true, JDXS.FLAG_SHALLOW, null),
-                    JDXS.FLAG_SHALLOW, null)
+            jdxHandle.update(emp, JDXS.FLAG_SHALLOW, null)
             emp = jdxHandle.getObjectById(oid, true, JDXS.FLAG_DEEP, null) as SimpleEmp
             JXUtilities.printObject(emp, 0, null)
 
